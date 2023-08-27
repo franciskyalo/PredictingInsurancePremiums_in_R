@@ -331,25 +331,25 @@ initial_model %>% summary()
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -11402.4  -2778.0   -954.6   1278.0  24023.3 
+    ## -11508.1  -2816.8   -927.6   1628.7  29594.4 
     ## 
     ## Coefficients:
     ##                  Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)     -11224.46    1085.47 -10.341  < 2e-16 ***
-    ## age                253.22      13.07  19.372  < 2e-16 ***
-    ## sexmale           -313.06     365.79  -0.856  0.39227    
-    ## bmi                324.49      31.26  10.379  < 2e-16 ***
-    ## children           442.99     149.56   2.962  0.00313 ** 
-    ## smokeryes        23963.34     453.76  52.811  < 2e-16 ***
-    ## regionnorthwest   -318.26     524.05  -0.607  0.54377    
-    ## regionsoutheast  -1322.30     519.78  -2.544  0.01110 *  
-    ## regionsouthwest   -963.23     523.26  -1.841  0.06592 .  
+    ## (Intercept)     -12510.73    1098.78 -11.386  < 2e-16 ***
+    ## age                265.08      13.26  19.991  < 2e-16 ***
+    ## sexmale             27.82     372.64   0.075  0.94049    
+    ## bmi                345.39      31.87  10.837  < 2e-16 ***
+    ## children           527.45     154.61   3.412  0.00067 ***
+    ## smokeryes        24087.33     460.31  52.328  < 2e-16 ***
+    ## regionnorthwest   -698.98     532.76  -1.312  0.18980    
+    ## regionsoutheast  -1034.69     537.88  -1.924  0.05467 .  
+    ## regionsouthwest  -1014.90     537.71  -1.887  0.05937 .  
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 5964 on 1063 degrees of freedom
-    ## Multiple R-squared:  0.7551, Adjusted R-squared:  0.7532 
-    ## F-statistic: 409.6 on 8 and 1063 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 6056 on 1063 degrees of freedom
+    ## Multiple R-squared:  0.7593, Adjusted R-squared:  0.7575 
+    ## F-statistic: 419.1 on 8 and 1063 DF,  p-value: < 2.2e-16
 
 The model has an R-squared of `75%`
 
@@ -384,13 +384,13 @@ initial_model %>% check_collinearity()
     ## 
     ## Low Correlation
     ## 
-    ##      Term  VIF       VIF 95% CI Increased SE Tolerance Tolerance 95% CI
-    ##       age 1.02 [1.00,     1.80]         1.01      0.98     [0.56, 1.00]
-    ##       sex 1.01 [1.00,    15.75]         1.00      0.99     [0.06, 1.00]
-    ##       bmi 1.10 [1.05,     1.20]         1.05      0.91     [0.83, 0.96]
-    ##  children 1.00 [1.00, 37364.48]         1.00      1.00     [0.00, 1.00]
-    ##    smoker 1.01 [1.00,     9.41]         1.00      0.99     [0.11, 1.00]
-    ##    region 1.08 [1.04,     1.19]         1.04      0.92     [0.84, 0.96]
+    ##      Term  VIF     VIF 95% CI Increased SE Tolerance Tolerance 95% CI
+    ##       age 1.02 [1.00,   1.67]         1.01      0.98     [0.60, 1.00]
+    ##       sex 1.01 [1.00,   1.93]         1.01      0.99     [0.52, 1.00]
+    ##       bmi 1.12 [1.07,   1.23]         1.06      0.89     [0.82, 0.94]
+    ##  children 1.00 [1.00, 879.86]         1.00      1.00     [0.00, 1.00]
+    ##    smoker 1.02 [1.00,   1.62]         1.01      0.98     [0.62, 1.00]
+    ##    region 1.12 [1.06,   1.22]         1.06      0.89     [0.82, 0.94]
 
 - Checking for outliers
 
@@ -410,7 +410,7 @@ initial_model %>% check_outliers() %>% plot()
 MAPE(y_pred = initial_model$fitted.values, y_true = train_set$expenses)
 ```
 
-    ## [1] 0.4112941
+    ## [1] 0.4133623
 
 #### Second model
 
@@ -448,27 +448,27 @@ second_model %>% summary()
     ## 
     ## Residuals:
     ##      Min       1Q   Median       3Q      Max 
-    ## -0.62131 -0.15905 -0.06378 -0.00734  2.37975 
+    ## -0.66470 -0.15189 -0.05953 -0.00509  2.31705 
     ## 
     ## Coefficients:
     ##                   Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)      7.1255629  0.0769126  92.645  < 2e-16 ***
-    ## age              0.0419097  0.0009431  44.440  < 2e-16 ***
-    ## sexmale         -0.1069009  0.0234806  -4.553 5.91e-06 ***
-    ## bmi              0.0013982  0.0022410   0.624   0.5328    
-    ## children         0.1109172  0.0095939  11.561  < 2e-16 ***
-    ## smokeryes        1.2591704  0.1633368   7.709 2.91e-14 ***
-    ## regionnorthwest -0.0683885  0.0336076  -2.035   0.0421 *  
-    ## regionsoutheast -0.1668175  0.0333350  -5.004 6.56e-07 ***
-    ## regionsouthwest -0.1612457  0.0335514  -4.806 1.76e-06 ***
-    ## age:smokeryes   -0.0339823  0.0020595 -16.500  < 2e-16 ***
-    ## bmi:smokeryes    0.0529407  0.0047447  11.158  < 2e-16 ***
+    ## (Intercept)      7.0979570  0.0770119  92.167  < 2e-16 ***
+    ## age              0.0416068  0.0009329  44.599  < 2e-16 ***
+    ## sexmale         -0.0797521  0.0234430  -3.402 0.000694 ***
+    ## bmi              0.0024407  0.0022449   1.087 0.277188    
+    ## children         0.1060409  0.0097059  10.925  < 2e-16 ***
+    ## smokeryes        1.3256024  0.1567744   8.455  < 2e-16 ***
+    ## regionnorthwest -0.0838710  0.0334381  -2.508 0.012282 *  
+    ## regionsoutheast -0.1603826  0.0337772  -4.748 2.33e-06 ***
+    ## regionsouthwest -0.1597226  0.0337756  -4.729 2.56e-06 ***
+    ## age:smokeryes   -0.0332051  0.0020629 -16.097  < 2e-16 ***
+    ## bmi:smokeryes    0.0492452  0.0045256  10.882  < 2e-16 ***
     ## ---
     ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
     ## 
-    ## Residual standard error: 0.3822 on 1061 degrees of freedom
-    ## Multiple R-squared:  0.8294, Adjusted R-squared:  0.8278 
-    ## F-statistic: 515.8 on 10 and 1061 DF,  p-value: < 2.2e-16
+    ## Residual standard error: 0.3801 on 1061 degrees of freedom
+    ## Multiple R-squared:  0.8317, Adjusted R-squared:  0.8301 
+    ## F-statistic: 524.2 on 10 and 1061 DF,  p-value: < 2.2e-16
 
 The second model has an R-squared of `82%` which is an improved from the
 initial model
@@ -508,7 +508,7 @@ second_model %>% check_outliers() %>% plot()
 MAPE(y_pred = second_model$fitted.values, y_true = train_set2$log_exp)
 ```
 
-    ## [1] 0.02304753
+    ## [1] 0.02244761
 
 This shows that the second model is better than the first model as it
 has more superior R-squared and Mean Absolute Percentage Error.
@@ -525,11 +525,19 @@ y_test_pred = predict(second_model, newdata = test_set2)
 MAPE(y_test_pred, test_set2$log_exp)
 ```
 
-    ## [1] 0.02249704
+    ## [1] 0.02368342
 
 According to the Mean Absolute Percentage Error, the ultimate model will
 have an expected error of about `2.5 percent` on every prediction it
 makes which is pretty impressive
+
+### SAVING THE MODEL INTO A RDS OBJECT
+
+``` r
+# saving the model 
+
+write_rds(second_model,"insurance_model.rds")
+```
 
 ### RECOMMENDATIONS
 
